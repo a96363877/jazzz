@@ -22,6 +22,10 @@ export default function RootLayout({
       <body className={inter.className}>
           <Header />
           {children}
+            {/* Footer */}
+        <div className="text-center text-sm text-muted-foreground">
+          حقوق التأليف والنشر © 2025 بريد الجزائر
+        </div>
       </body>
     </html>
   );
