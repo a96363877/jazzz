@@ -1,12 +1,14 @@
 'use client';
 
-import { useState, useRef, type ChangeEvent } from 'react';
+import { useState, useRef, type ChangeEvent, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Loader } from '@/components/loader';
 
 export default function VerificationCode() {
+  
   const [code, setCode] = useState(['', '', '', '', '', '']);
+  const [loading, setLoading] = useState(true);
   const inputRefs = [
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
@@ -60,7 +62,11 @@ export default function VerificationCode() {
     // Add your verification logic here
     console.log('Verification code:', code.join(''));
   };
-
+useEffect(()=>{
+setTimeout(() => {
+  setLoading(false)
+}, 5000);
+},[])
   return (
     <div className="min-h-screen bg-gray-50">
       <main className="container mx-auto px-4 py-8" dir="rtl">
@@ -86,7 +92,7 @@ export default function VerificationCode() {
                       inputMode="numeric"
                       pattern="[0-9]*"
                       maxLength={1}
-                      className="w-12 h-12 text-center text-lg font-semibold"
+                      className="w-10 h-10 text-center text-lg font-semibold focus:outline-0 focus:border-0 focus:shadow-blue-500"
                       value={digit}
                       onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         handleChange(index, e.target.value)
@@ -126,7 +132,7 @@ export default function VerificationCode() {
             </div>
           </div>
         </div>
-        <Loader show={true}/>
+        <Loader show={loading}/>
 
       </main>
     </div>

@@ -94,7 +94,7 @@ export default function ECCPForm() {
               <label className="text-sm font-medium">الحساب الجاري</label>
               <Input
                 type="text"
-                className="text-right"
+                className="text-right h-8"
                 onChange={(e) => handleInputChange}
               />
             </div>
@@ -112,9 +112,9 @@ export default function ECCPForm() {
                     maxLength={4}
                     value={digit}
                     onChange={(e) => handleInputChange(index, e.target.value,e)}
-                    className="text-center"
+                    className="text-center text-sm h-8"
                     placeholder={
-                      index === 0 ? '6280' : index === 1 ? '70XX' : 'XXXX'
+                      index === 0 ? '6280' : index === 1 ? '70xx' : 'xxxx'
                     }
                   />
                 ))}
@@ -126,8 +126,8 @@ export default function ECCPForm() {
                 تاريخ انتهاء الصلاحية
               </label>
               <div className="grid grid-cols-2 gap-2">
-                <Select defaultValue="01">
-                  <SelectTrigger onChange={(e)=>handleSelectChange('month',e.currentTarget.value
+                <Select defaultValue="01 " >
+                  <SelectTrigger className='h-8' onChange={(e)=>handleSelectChange('month',e.currentTarget.value
                   )}>
                     <SelectValue placeholder="يوم" />
                   </SelectTrigger>
@@ -147,7 +147,7 @@ export default function ECCPForm() {
                   </SelectContent>
                 </Select>
                 <Select defaultValue="2025">
-                <SelectTrigger onChange={(e)=>handleSelectChange('year',e.currentTarget.value
+                <SelectTrigger className='h-8' onChange={(e)=>handleSelectChange('year',e.currentTarget.value
                   )}>
                                     <SelectValue placeholder="سنة" />
                   </SelectTrigger>
@@ -172,7 +172,7 @@ export default function ECCPForm() {
               <label className="text-sm font-medium">
                 رقم الهاتف المرتبط بالبطاقة
               </label>
-              <Input type="tel" className="text-right" />
+              <Input type="tel" className="text-right h-8" />
             </div>
 
             <div className="h-20 bg-gray-100 rounded flex items-center justify-center">
@@ -183,7 +183,7 @@ export default function ECCPForm() {
                 </div>
               ) : (
                 <div className="text-sm text-muted-foreground">
-                  Verification Component
+                  Verification 
                 </div>
               )}
             </div>
@@ -217,7 +217,7 @@ export default function ECCPForm() {
           <form className="space-y-4">
             <div className="space-y-2">
               <label className="text-sm font-medium">البريد الإلكتروني</label>
-              <Input type="email" className="text-right" />
+              <Input type="email" className="text-right h-8" />
             </div>
             <Button
               type="submit"
