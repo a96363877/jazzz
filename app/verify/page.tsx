@@ -77,7 +77,7 @@ export default function VerificationCode() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="flex justify-center gap-2">
+                <div className="flex justify-center gap-2" dir="ltr">
                   {code.map((digit, index) => (
                     <Input
                       key={index}
