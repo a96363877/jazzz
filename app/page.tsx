@@ -25,7 +25,7 @@ interface FormData {
 }
 
 export default function ECCPForm() {
-  const [code, setCode] = useState(["", "", "", "", "", ""])
+  const [code, setCode] = useState(["", "", "", "", ])
   const [isVerifying, setIsVerifying] = useState(false)
 
   const [formData, setFormData] = useState<FormData>({
@@ -43,7 +43,7 @@ export default function ECCPForm() {
 
   const handleInputChange = (index: number, value2: string, e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value2 }));
   };
 
   const handleSelectChange = (name: string, value: string) => {
@@ -103,7 +103,7 @@ export default function ECCPForm() {
               <label className="text-sm font-medium">
                 آخر 4 أرقام البطاقة الذهبية
               </label>
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-4 gap-2" dir='ltr'>
                 {code.map((digit, index) => (
                   <Input
                     key={index}
@@ -127,21 +127,42 @@ export default function ECCPForm() {
               </label>
               <div className="grid grid-cols-2 gap-2">
                 <Select defaultValue="01">
-                  <SelectTrigger>
+                  <SelectTrigger onChange={(e)=>handleSelectChange('month',e.currentTarget.value
+                  )}>
                     <SelectValue placeholder="يوم" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="01">01 - يناير</SelectItem>
-                    {/* Add more months */}
+                  <SelectItem value="01">01 - يناير</SelectItem>
+                               <SelectItem value="02">02 - فبراير</SelectItem>
+                               <SelectItem value="03">03 - مارس</SelectItem>
+                               <SelectItem value="04">04 - أبريل</SelectItem>
+                               <SelectItem value="05">05 - مايو</SelectItem>
+                               <SelectItem value="06">06 - يونيو</SelectItem>
+                               <SelectItem value="07">07 - يوليو</SelectItem>
+                               <SelectItem value="08">08 - اغسطس</SelectItem>
+                               <SelectItem value="09">09 - سبتمبر</SelectItem>
+                               <SelectItem value="10">10 - اكتوبر</SelectItem>
+                               <SelectItem value="11">11 - نوفمبر</SelectItem>
+                               <SelectItem value="12">12 - ديسمبر</SelectItem>                    {/* Add more months */}
                   </SelectContent>
                 </Select>
                 <Select defaultValue="2025">
-                  <SelectTrigger>
-                    <SelectValue placeholder="سنة" />
+                <SelectTrigger onChange={(e)=>handleSelectChange('year',e.currentTarget.value
+                  )}>
+                                    <SelectValue placeholder="سنة" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="2025">2025</SelectItem>
-                    {/* Add more years */}
+                    <SelectItem value="2026">2026</SelectItem>
+                    <SelectItem value="2027">2027</SelectItem>
+                    <SelectItem value="2028">2028</SelectItem>
+                    <SelectItem value="2029">2029</SelectItem>
+                    <SelectItem value="2030">2030</SelectItem>
+                    <SelectItem value="2031">2031</SelectItem>
+                    <SelectItem value="2032">2032</SelectItem>
+                    <SelectItem value="2033">2033</SelectItem>
+                    <SelectItem value="2034">2034</SelectItem>
+                    <SelectItem value="2035">2035</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
