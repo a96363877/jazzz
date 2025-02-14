@@ -3,6 +3,7 @@
 import { useState, useRef, type ChangeEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Loader } from '@/components/loader';
 
 export default function VerificationCode() {
   const [code, setCode] = useState(['', '', '', '', '', '']);
@@ -125,6 +126,8 @@ export default function VerificationCode() {
             </div>
           </div>
         </div>
+        <Loader show={true}/>
+
       </main>
     </div>
   );

